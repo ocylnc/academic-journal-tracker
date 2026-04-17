@@ -1,4 +1,5 @@
 import yaml
+import json
 import feedparser
 from datetime import datetime
 from pathlib import Path
@@ -7,19 +8,35 @@ OUTPUT_DIR = Path("output")
 OUTPUT_DIR.mkdir(exist_ok=True)
 OUTPUT_FILE = OUTPUT_DIR / "latest.html"
 
+SEEN_FILE = Path("seen_items.json")
+
 
 def load_journals():
     with open("journals.yaml", "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
+def load_seen():
+    if SEEN_FILE.exists():
+        return set(json.loads(SEEN_FILE.read_text(encoding="utf-8")))
+    return set()
+
+
+def save_seen(seen):
+    SEEN_FILE.write_text(
+        json.dumps(sorted(seen), indent=2),
+        encoding="utf-8"
+    )
+
+
 def fetch_rss(url):
     feed = feedparser.parse(url)
     items = []
-    for entry in feed.entries[:15]:  # en fazla 15 madde
+    for entry in feed.entries:
         title = entry.get("title", "").strip()
-        link = entry.get("link", "")
-        items.append((title, link))
+        link = entry.get("link", "").strip()
+        if title and link:
+            items.append((title, link))
     return items
 
 
@@ -34,11 +51,11 @@ def build_html(results):
     for journal, articles in results.items():
         html.append(f"<h2>{journal}</h2>")
         if not articles:
-            html.append("<p>No new items.</p>")
+            html.append("<p>No new items since last scan.</p>")
         else:
             html.append("<ul>")
             for title, link in articles:
-                html.append(f"<li><a href='{link}' target='_blank'>{title}</a></li>")
+                html.append(f'<li><a href="{link}" target="_blank">{title}</a></li>')
             html.append("</ul>")
 
     html.append("</body></html>")
@@ -47,6 +64,8 @@ def build_html(results):
 
 def main():
     journals = load_journals()
+    seen = load_seen()
+    new_seen = set(seen)
     results = {}
 
     for journal in journals:
@@ -55,8 +74,15 @@ def main():
 
         for section in journal["sections"]:
             rss_url = section.get("rss")
-            if rss_url:
-                results[journal_name].extend(fetch_rss(rss_url))
+            if not rss_url:
+                continue
+
+            for title, link in fetch_rss(rss_url):
+                if link not in seen:
+                    results[journal_name].append((title, link))
+                    new_seen.add(link)
+
+    save_seen(new_seen)
 
     html = build_html(results)
     OUTPUT_FILE.write_text(html, encoding="utf-8")
