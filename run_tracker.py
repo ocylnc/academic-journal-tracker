@@ -15,21 +15,23 @@ OUTPUT_FILE = OUTPUT_DIR / "latest.html"
 SEEN_FILE = Path("seen_items.json")
 
 def send_email(results):
-    print("DEBUG: send_email çalıştı")
-
     body_lines = []
 
     for journal, articles in results.items():
         if articles:
             body_lines.append(f"\n{journal}")
             for title, link in articles:
-                body_lines.append(f"- {title}\n  {link}")
+                body_lines.append(f"- {title}")
+                body_lines.append(f"  {link}")
+
+    if not body_lines:
+        return   # yeni bir şey yoksa mail ATMA
 
     msg = EmailMessage()
-    msg["Subject"] = "TEST – Academic Tracker Mail"
+    msg["Subject"] = "Weekly Academic Updates"
     msg["From"] = os.environ["MAIL_USER"]
     msg["To"] = os.environ["MAIL_RECEIVER"]
-    msg.set_content("\n".join(body_lines) or "TEST MAIL")
+    msg.set_content("\n".join(body_lines))
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
         smtp.login(
