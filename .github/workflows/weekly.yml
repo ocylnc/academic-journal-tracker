@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4 pyyaml
+          pip install requests beautifulsoup4 pyyaml feedparser
 
       - name: Run journal tracker
         run: python run_tracker.py
