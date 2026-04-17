@@ -28,9 +28,9 @@ jobs:
         run: python run_tracker.py
 
       - name: Commit results
-        run: |
-          git config user.name "academic-bot"
-          git config user.email "bot@example.com"
-          git add output/latest.html
-          git commit -m "Weekly update" || echo "No changes"
-          git push
+  run: |
+    git config user.name "academic-bot"
+    git config user.email "bot@example.com"
+    git add output/latest.html seen_items.json
+    git commit -m "Weekly update" || echo "No changes"
+    git push
