@@ -1,6 +1,4 @@
-# =====================================================
 # Academic Journal Tracker – Journal Configuration
-# =====================================================
 
 - name: "European Journal of Industrial Relations"
   platform: sage
