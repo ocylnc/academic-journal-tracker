@@ -2,10 +2,6 @@
 # Academic Journal Tracker – Journal Configuration
 # =====================================================
 
-# -----------------------
-# SAGE Journals
-# -----------------------
-
 - name: European Journal of Industrial Relations
   platform: sage
   sections:
@@ -21,10 +17,6 @@
       url: https://journals.sagepub.com/toc/ELL/current
     - type: online_first
       url: https://journals.sagepub.com/toc/ELL/0/0
-
-# -----------------------
-# Wiley Online Library
-# -----------------------
 
 - name: British Journal of Industrial Relations
   platform: wiley
@@ -58,10 +50,6 @@
     - type: early_view
       url: https://onlinelibrary.wiley.com/toc/14679914/0/0?campaign=wolearlyview
 
-# -----------------------
-# ETUI – Newsletters & Archives
-# -----------------------
-
 - name: ETUI Collective Bargaining Newsletter
   platform: etui
   sections:
@@ -73,10 +61,6 @@
   sections:
     - type: archive
       url: https://www.etui.org/etuihesamail-archives
-
-# -----------------------
-# Bristol University Press – Books
-# -----------------------
 
 - name: Bristol University Press – Social Policy Books
   platform: bristol
