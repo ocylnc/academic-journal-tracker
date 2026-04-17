@@ -16,32 +16,32 @@ def load_journals():
 
 
 def scrape_sage(section):
-    r = requests.get(section["url"], timeout=30)
+    r = requests.get(section["url"], timeout=30, headers={"User-Agent": "Mozilla/5.0"})
     soup = BeautifulSoup(r.text, "html.parser")
     articles = []
 
-    for item in soup.select("div.toc-row"):
-        title_tag = item.select_one("h4 a")
+    for item in soup.select("article"):
+        title_tag = item.select_one("h5 a")
         if not title_tag:
             continue
         title = title_tag.get_text(strip=True)
-        link = "https://journals.sagepub.com" + title_tag["href"]
+        link = "https://journals.sagepub.com" + title_tag.get("href")
         articles.append((title, link))
 
     return articles
 
 
 def scrape_wiley(section):
-    r = requests.get(section["url"], timeout=30)
+    r = requests.get(section["url"], timeout=30, headers={"User-Agent": "Mozilla/5.0"})
     soup = BeautifulSoup(r.text, "html.parser")
     articles = []
 
-    for item in soup.select("div.issue-item"):
-        title_tag = item.select_one("h2.issue-item__title a")
+    for item in soup.select("li.search__item"):
+        title_tag = item.select_one("h2 a")
         if not title_tag:
             continue
         title = title_tag.get_text(strip=True)
-        link = "https://onlinelibrary.wiley.com" + title_tag["href"]
+        link = "https://onlinelibrary.wiley.com" + title_tag.get("href")
         articles.append((title, link))
 
     return articles
