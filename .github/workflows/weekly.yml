@@ -34,4 +34,3 @@ jobs:
           git add output/latest.html
           git commit -m "Weekly update" || echo "No changes"
           git push
-``
