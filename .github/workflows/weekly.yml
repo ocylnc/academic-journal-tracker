@@ -24,8 +24,12 @@ jobs:
         run: |
           pip install pyyaml feedparser
 
-      - name: Run journal tracker
-        run: python run_tracker.py
+     - name: Run journal tracker
+  env:
+    MAIL_USER: ${{ secrets.MAIL_USER }}
+    MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+    MAIL_RECEIVER: ${{ secrets.MAIL_RECEIVER }}
+  run: python run_tracker.py
 
       - name: Commit results
         run: |
