@@ -1,0 +1,86 @@
+# =====================================================
+# Academic Journal Tracker – Journal Configuration
+# =====================================================
+
+# -----------------------
+# SAGE Journals
+# -----------------------
+
+- name: European Journal of Industrial Relations
+  platform: sage
+  sections:
+    - type: current
+      url: https://journals.sagepub.com/toc/EJD/current
+    - type: online_first
+      url: https://journals.sagepub.com/toc/EJD/0/0
+
+- name: European Labour Law Journal
+  platform: sage
+  sections:
+    - type: current
+      url: https://journals.sagepub.com/toc/ELL/current
+    - type: online_first
+      url: https://journals.sagepub.com/toc/ELL/0/0
+
+# -----------------------
+# Wiley Online Library
+# -----------------------
+
+- name: British Journal of Industrial Relations
+  platform: wiley
+  sections:
+    - type: current
+      url: https://onlinelibrary.wiley.com/toc/14678543/current
+    - type: early_view
+      url: https://onlinelibrary.wiley.com/toc/14678543/0/0
+
+- name: Industrial Relations Journal
+  platform: wiley
+  sections:
+    - type: current
+      url: https://onlinelibrary.wiley.com/toc/14682338/current
+    - type: early_view
+      url: https://onlinelibrary.wiley.com/toc/14682338/0/0
+
+- name: Industrial Relations: A Journal of Economy and Society
+  platform: wiley
+  sections:
+    - type: current
+      url: https://onlinelibrary.wiley.com/toc/1468232x/current
+    - type: early_view
+      url: https://onlinelibrary.wiley.com/toc/1468232x/0/0?campaign=wolearlyview
+
+- name: Labour
+  platform: wiley
+  sections:
+    - type: current
+      url: https://onlinelibrary.wiley.com/toc/14679914/current
+    - type: early_view
+      url: https://onlinelibrary.wiley.com/toc/14679914/0/0?campaign=wolearlyview
+
+# -----------------------
+# ETUI – Newsletters & Archives
+# -----------------------
+
+- name: ETUI Collective Bargaining Newsletter
+  platform: etui
+  sections:
+    - type: newsletter
+      url: https://www.etui.org/newsletters/collective-bargaining-newsletter
+
+- name: ETUI Hesamail Archives
+  platform: etui
+  sections:
+    - type: archive
+      url: https://www.etui.org/etuihesamail-archives
+
+# -----------------------
+# Bristol University Press – Books
+# -----------------------
+
+- name: Bristol University Press – Social Policy Books
+  platform: bristol
+  sections:
+    - type: books
+      url: https://policy.bristoluniversitypress.co.uk/social-policy-and-welfare/all
+``
