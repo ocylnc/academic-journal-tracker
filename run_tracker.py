@@ -15,6 +15,8 @@ OUTPUT_FILE = OUTPUT_DIR / "latest.html"
 SEEN_FILE = Path("seen_items.json")
 
 def send_email(results):
+    print("DEBUG: send_email çalıştı")
+
     body_lines = []
 
     for journal, articles in results.items():
@@ -23,14 +25,11 @@ def send_email(results):
             for title, link in articles:
                 body_lines.append(f"- {title}\n  {link}")
 
-    if not body_lines:
-        return  # yeni bir şey yok → mail atma
-
     msg = EmailMessage()
-    msg["Subject"] = "Weekly Academic Updates"
+    msg["Subject"] = "TEST – Academic Tracker Mail"
     msg["From"] = os.environ["MAIL_USER"]
     msg["To"] = os.environ["MAIL_RECEIVER"]
-    msg.set_content("\n".join(body_lines))
+    msg.set_content("\n".join(body_lines) or "TEST MAIL")
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
         smtp.login(
@@ -38,7 +37,6 @@ def send_email(results):
             os.environ["MAIL_PASSWORD"]
         )
         smtp.send_message(msg)
-
 
 def load_journals():
     with open("journals.yaml", "r", encoding="utf-8") as f:
