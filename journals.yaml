@@ -14,9 +14,37 @@
   sections:
     - rss: https://onlinelibrary.wiley.com/feed/14682338/most-recent
 
+- name: "Transfer: European Review of Labour and Research"
+  sections:
+    - rss: https://www.tandfonline.com/feed/rss/ftur20
+
+- name: "International Journal of Comparative Labour Law and Industrial Relations"
+  sections:
+    - rss: https://kluwerlawonline.com/feeds/IJCLLIR
+
+- name: "European Convention on Human Rights Law Review"
+  sections:
+    - rss: https://brill.com/abstract/journals/eclr/eclr-overview.xml
+    
 - name: "Industrial Relations: A Journal of Economy and Society"
   sections:
     - rss: https://onlinelibrary.wiley.com/feed/1468232x/most-recent
+
+- name: "International Labour Review"
+  sections:
+    - rss: https://en.ilr-rit.org/rss/
+
+- name: "The European Journal of Social Security"
+  sections:
+    - rss: https://journals.sagepub.com/action/showFeed?type=etoc&feed=rss&jc=ejoa
+
+    - name: "International Social Security Review"
+  sections:
+    - rss: https://en.ilr-rit.org/rss/
+    
+- name: "Turkish Studies"
+  sections:
+    - rss: https://www.tandfonline.com/feed/rss/rtur20
 
 - name: "Labour"
   sections:
