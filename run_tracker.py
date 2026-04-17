@@ -1,3 +1,7 @@
+
+import smtplib
+from email.message import EmailMessage
+import os
 import yaml
 import json
 import feedparser
@@ -9,6 +13,31 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 OUTPUT_FILE = OUTPUT_DIR / "latest.html"
 
 SEEN_FILE = Path("seen_items.json")
+
+def send_email(results):
+    body_lines = []
+
+    for journal, articles in results.items():
+        if articles:
+            body_lines.append(f"\n{journal}")
+            for title, link in articles:
+                body_lines.append(f"- {title}\n  {link}")
+
+    if not body_lines:
+        return  # yeni bir şey yok → mail atma
+
+    msg = EmailMessage()
+    msg["Subject"] = "Weekly Academic Updates"
+    msg["From"] = os.environ["MAIL_USER"]
+    msg["To"] = os.environ["MAIL_RECEIVER"]
+    msg.set_content("\n".join(body_lines))
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(
+            os.environ["MAIL_USER"],
+            os.environ["MAIL_PASSWORD"]
+        )
+        smtp.send_message(msg)
 
 
 def load_journals():
@@ -87,6 +116,7 @@ def main():
     html = build_html(results)
     OUTPUT_FILE.write_text(html, encoding="utf-8")
 
+    send_email(results)
 
 if __name__ == "__main__":
     main()
