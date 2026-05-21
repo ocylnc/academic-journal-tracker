@@ -58,6 +58,12 @@
   sections:
     - rss: https://digitalcommons.osgoode.yorku.ca/cllpj/recent.rss
 
-- name: "Nordic Journal of Human Rights"
+- name: "International Journal of Comparative Labour Law and Industrial Relations"
   sections:
-    - rss: https://www.tandfonline.com/feed/rss/rnhr20    
+    - rss: https://kluwerlawonline.com/feeds/IJCL   
+
+- name: "Human Rights Law Review "
+  sections:
+    - rss: https://academic.oup.com/rss/site_5167/3031.xml
+
+    
