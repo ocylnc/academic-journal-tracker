@@ -49,3 +49,15 @@
 - name: "Labour"
   sections:
     - rss: https://onlinelibrary.wiley.com/feed/14679914/most-recent
+
+- name: "Nordic Journal of Human Rights"
+  sections:
+    - rss: https://www.tandfonline.com/feed/rss/rnhr20
+    
+- name: " Comparative Labor Law & Policy Journal"
+  sections:
+    - rss: https://digitalcommons.osgoode.yorku.ca/cllpj/recent.rss
+
+- name: "Nordic Journal of Human Rights"
+  sections:
+    - rss: https://www.tandfonline.com/feed/rss/rnhr20    
